@@ -1,4 +1,5 @@
 object calendar {
+
   final case class HourOfDay(value: Int) {
     def to(that: HourOfDay): Stream[HourOfDay] = (value to that.value).toStream.map(HourOfDay(_))
 
@@ -28,7 +29,9 @@ object calendar {
     case object Free extends CalendarStatus
   }
 
-  final case class CalendarRegion(span: TimeSpan, status: CalendarStatus)
+  final case class CalendarRegion(span: TimeSpan, status: CalendarStatus) {
+    def intersect(other: CalendarRegion): CalendarRegion = ???
+  }
 
   final case class DailySchedule(set: Set[CalendarRegion])
 
