@@ -62,7 +62,11 @@ object calendar {
   }
 
   final case class DailySchedule(set: Set[CalendarRegion]) {
-    def isConflictFree: Boolean = ???
+    def isConflictFree: Boolean = set.foldLeft[(Boolean, Option[CalendarRegion])]((true, None)) {
+      case ((true, Some(region)), current) => (region.intersect(current).isEmpty, Some(current))
+      case ((true, None), current) => (true, Some(current))
+      case _ => (false, None)
+    }._1
   }
 
   final case class MonthlySchedule(daysOfMonth: Vector[DailySchedule])
