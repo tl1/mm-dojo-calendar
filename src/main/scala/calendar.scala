@@ -22,53 +22,20 @@ object calendar {
 
   final case class TimeSpan(start: HourOfDay, end: HourOfDay)
 
-  /**
-   * EXERCISE 1
-   *
-   * Explore the structure of `CalendarStatus` by deciding what composable,
-   * orthogonal operations to add to the data type.
-   */
   sealed trait CalendarStatus
   object CalendarStatus {
     case object Busy extends CalendarStatus
     case object Free extends CalendarStatus
   }
 
-  /**
-   * EXERCISE 2
-   *
-   * Explore the structure of `CalendarRegion` by deciding what composable,
-   * orthogonal operations to add to the data type.
-   */
   final case class CalendarRegion(span: TimeSpan, status: CalendarStatus)
 
-  /**
-   * EXERCISE 3
-   *
-   * Explore the structure of `DailySchedule` by deciding what composable,
-   * orthogonal operations to add to the data type.
-   *
-   * HINT: Consider the union and intersection of two daily schedules.
-   */
   final case class DailySchedule(set: Set[CalendarRegion])
 
-  /**
-   * EXERCISE 4
-   *
-   * Explore the structure of `MonthlySchedule` by deciding what composable,
-   * orthogonal operations to add to the data type.
-   */
   final case class MonthlySchedule(daysOfMonth: Vector[DailySchedule])
 
   final case class Person(name: String)
 
-  /**
-   * EXERCISE 5
-   *
-   * Using the operators you build, express a solution to the following
-   * problem: find all the free times that a group of friends can virtually
-   * meet for the specified number of hours.
-   */
   def findFreeTimes(lengthInHours: Int, friends: Map[Person, MonthlySchedule]): MonthlySchedule = ???
 
 }
