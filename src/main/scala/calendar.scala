@@ -61,7 +61,9 @@ object calendar {
     }
   }
 
-  final case class DailySchedule(set: Set[CalendarRegion])
+  final case class DailySchedule(set: Set[CalendarRegion]) {
+    def isConflictFree: Boolean = ???
+  }
 
   final case class MonthlySchedule(daysOfMonth: Vector[DailySchedule])
 
